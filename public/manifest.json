@@ -1,0 +1,19 @@
+{
+ "content_scripts": [ {
+  "js": [ "js/jquery-3.3.1.js", "js/contents.js" ],
+  "matches": [ "\u003Call_urls>" ]
+ } ],
+ "description": "IDW running",
+ "icons": {
+  "128": "images/icon.png"
+ },
+ "manifest_version": 2,
+ "name": "IDW running",
+ "permissions": [ "http://*/*", "https://*/*" ],
+ "version": "0.1.0",
+ "web_accessible_resources": [
+  "images/*.png",
+  "images/*.gif",
+  "js/*.js"
+ ]
+}
