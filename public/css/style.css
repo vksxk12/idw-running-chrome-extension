@@ -1,0 +1,16 @@
+/* some style */
+
+body {
+    background: darkseagreen;
+    margin: 0px;
+    padding: 0px;
+}
+
+#test-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    background: url("../images/grid200x200.png");
+}

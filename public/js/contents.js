@@ -1,17 +1,57 @@
 // "use strict";
 
-$(function () {
-  var $visible = $(":visible").not('html').not('body').not('div').not('br');
-  $visible.each((v, idx) => {
-    let $tgt = $($visible[idx]);
-    if ($tgt.prop("tagName") == 'DIV' && !$tgt.innerText) {
-      $visible.splice(idx, 1);
-    }
+var obj = {};
+var interval;
+var doll;
+var fp;
+var show;
+
+function init_vals(o) {
+  console.log(this);
+  interval = o["interval"] || 5.0;
+  doll = o["doll"] || "IDWMod";
+  fp = o["footprint"] || "shoes";
+  show = o["show"] || "0";
+
+  console.log(interval);
+  console.log("doll", doll);
+  console.log(fp);
+  console.log(show);
+
+}
+
+function load_data() {
+  // if (!chrome.storage || !chrome.storage.sync) {
+  //   console.log("not ready.");
+  //   setTimeout(function () {
+  //     load_data();
+  //   }, 1000);
+  //   return;
+  // }
+  chrome.storage.sync.get("settings", function (items) {
+    obj = items["settings"];
+    init_vals(obj);
+    run();
   });
+}
+
+$(function () {
+  // init_vals(obj);
+  load_data();
+});
+
+
+function run() {
+  // console.log(this);
+  // console.log("doll", doll);
+
+  let doll_url = "images/dolls/" + doll + "-move.gif";
+
+  console.log("doll_url=", doll_url);
 
   let $body = $('body');
   let $cat_running = $('<img width="200">');
-  let imgRunningUrl = chrome.extension.getURL("images/idw-move.gif");
+  let imgRunningUrl = chrome.extension.getURL(doll_url);
   $cat_running.attr("src", imgRunningUrl);
   $cat_running.css({
     position: "fixed",
@@ -24,16 +64,18 @@ $(function () {
   $body.append($cat_running);
 
   // setInterval(running, 3000);
-  setTimeout(running, 2000);
-  // setTimeout(blocker, 1000);
-  // init();
-
+  setTimeout(running, 1000);
 
   var sid = 0;
 
   function running(start, end) {
 
-    // if (!document.hasFocus()) return;
+    if ("all" == show) {
+    } else if (document.hasFocus()) {
+    } else {
+      setTimeout(running, interval * 1000);
+      return;
+    }
 
     const size = 200;
     let direction = rand(1, 4);
@@ -80,30 +122,33 @@ $(function () {
     radian = getRadian(start, end);
     var degree = radian * (180 / Math.PI);
     $cat_running.css(start);
+
+    let url = "images/footprints/" + fp + ".png";
+
     sid = setInterval(() => {
-      let $footstamp = $('<img width="60">');
-      let imgFootstampUrl = chrome.extension.getURL("images/footstamp.png");
+      let $footstamp = $('<img style="width:60px;height:60px;">');
+      let imgFootstampUrl = chrome.extension.getURL(url);
       let offset = $cat_running.offset();
       $footstamp.attr("src", imgFootstampUrl);
       $footstamp.css({
         position: "fixed",
         transform: "rotate(" + degree + "deg)",
-        top: offset.top + 150 - $window.scrollTop(),
+        top: offset.top + 130 - $window.scrollTop(),
         left: offset.left + 100,
-        width: '60px',
+        width: '45px',
+        height: '45px',
         zIndex: "9999997",
         pointerEvents: "none"
       });
       $body.append($footstamp);
       setTimeout(function () {
         $footstamp.fadeOut(200);
-      }, 3000);
+      }, 2000);
     }, 250);
 
     $cat_running.animate(end, 5000, function () {
       clearInterval(sid);
-
-      setTimeout(running, 3000);
+      setTimeout(running, interval * 1000);
 
     });
   }
@@ -117,4 +162,6 @@ $(function () {
     return radian;
   }
 
-})
+}
+
+

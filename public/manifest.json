@@ -1,19 +1,42 @@
 {
- "content_scripts": [ {
-  "js": [ "js/jquery-3.3.1.js", "js/contents.js" ],
-  "matches": [ "\u003Call_urls>" ]
- } ],
- "description": "IDW running",
- "icons": {
-  "128": "images/icon.png"
- },
- "manifest_version": 2,
- "name": "IDW running",
- "permissions": [ "http://*/*", "https://*/*" ],
- "version": "0.1.0",
- "web_accessible_resources": [
-  "images/*.png",
-  "images/*.gif",
-  "js/*.js"
- ]
+  "content_scripts": [
+    {
+      "matches": [
+        "\u003Call_urls>"
+      ],
+      "js": [
+        "js/jquery-3.3.1.js",
+        "js/data.js",
+        "js/contents.js"
+      ]
+    }
+  ],
+  "background": {
+    "scripts": [
+      "js/background.js"
+    ]
+  },
+  "description": "T-Dolls bother you",
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "128": "images/icon.png"
+  },
+  "manifest_version": 2,
+  "name": "T-Dolls: JamaMono",
+  "permissions": [
+    "storage",
+    "tabs",
+    "background",
+    "contextMenus",
+    "http://*/*",
+    "https://*/*"
+  ],
+  "version": "0.2.0",
+  "web_accessible_resources": [
+    "images/*.png",
+    "images/*.gif",
+    "js/*.js"
+  ]
 }

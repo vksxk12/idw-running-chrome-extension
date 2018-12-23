@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--<meta charset="UTF-8">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+  <!--<link href="css/style.css" rel="stylesheet" type="text/css">-->
+  <script src="js/jquery-3.3.1.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/popup.js"></script>
+
+  <!--<link rel="icon" href="https://clojurescript.org/images/cljs-logo-icon-32.png">-->
+  <style>
+    .title {
+      text-align: center;
+    }
+
+    th {
+      min-width: 80px;
+      text-align: right;
+      /*margin-right: 10px;*/
+      padding-right: 10px;
+    }
+
+    td {
+      margin: 8px;
+      vertical-align: middle;
+      height: 30px;
+    }
+
+    .popup {
+      width: 400px;
+    }
+
+    #interval {
+      width: 50px;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="popup">
+  <h3 class="title">
+    IN GF WORLD, T-DOLLS BOTHER YOU!
+  </h3>
+  <hr/>
+  <div>
+    Settings
+  </div>
+  <form>
+
+    <table>
+      <tr>
+        <th>
+          T-Doll
+        </th>
+        <td>
+          <select id="doll">
+
+          </select>
+        </td>
+      </tr>
+      <tr>
+      <tr>
+        <th>
+          Footprint
+        </th>
+        <td>
+          <select id="footprint">
+
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          Interval
+        </th>
+        <td>
+          <input type="number" id="interval" name="interval" value="" min="1" max="60"> Seconds
+        </td>
+      </tr>
+      <!--<tr>-->
+        <!--<td>-->
+          <!--&nbsp;-->
+        <!--</td>-->
+        <!--<td>-->
+          <!--&nbsp;-->
+        <!--</td>-->
+      <!--</tr>-->
+      <!--<tr>-->
+      <!--<th>-->
+      <!--Show-->
+      <!--</th>-->
+      <!--<td>-->
+      <!--<select id="show">-->
+      <!--<option value="0">Focused Page Only</option>-->
+      <!--<option value="all">Every Web Page</option>-->
+      <!--</select>-->
+
+      <!--</td>-->
+      <!--</tr>-->
+      <tr>
+      <th>
+      DEBUG
+      </th>
+      <td id="debug" style="word-break: break-all;">
+
+      </td>
+      </tr>
+    </table>
+  </form>
+  <hr/>
+
+  <a target="_blank" href="https://github.com/lazy-schemer/idw-running-chrome-extension">GitHub</a>
+
+  <div>
+
+
+  </div>
+
+</div>
+</div>
+</body>
+</html>
